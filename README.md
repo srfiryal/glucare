@@ -1,16 +1,17 @@
-# glucare
+## Tim Wonderland
+- Alga Vania Salsabillah (Hacker)
+- Sarah Rizqi Firyal (Hacker)
+- Rakha Putra Pratama (Hipster)
+- Jordan Frisay Himawan (Hustler)
 
-A new Flutter project.
+## Aplikasi
 
-## Getting Started
+GluCare adalah aplikasi mobile yang menggunakan kecerdasan buatan (AI) untuk mendeteksi diabetes. Aplikasi ini memungkinkan pengguna untuk mengunggah riwayat medis mereka, termasuk dokumen medis yang telah dipindai, ke aplikasi. GluCare kemudian menggunakan OCR (optical character recognition) untuk mengekstrak data yang relevan dari dokumen tersebut, dan menggunakan AI untuk menganalisis data tersebut untuk mencari tanda-tanda diabetes.
 
-This project is a starting point for a Flutter application.
+## Screenshot
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+|                           |                           |
+| ------------------------- | ------------------------- |
+| ![](/assets/readme/1.jpg) | ![](/assets/readme/2.jpg) |
+|                           |                           |
+| ![](/assets/readme/3.jpg) | ![](/assets/readme/4.jpg) |

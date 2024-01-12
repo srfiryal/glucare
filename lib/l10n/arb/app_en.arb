@@ -31,5 +31,16 @@
   "username_hint": "Enter your username",
   "already_have_account": "Already have an account?",
   "lets_login": "Let’s login!",
-  "optional": "Optional"
+  "optional": "Optional",
+  "hello": "Hello",
+  "glucose": "Glucose",
+  "hypoglyc": "Hypoglyc",
+  "normal": "Normal",
+  "hyperglyc": "Hyperglyc",
+  "diabetes_checker": "Diabetes Checker",
+  "diabetes_checker_desc": "Check diabetes risk now",
+  "bmi": "BMI",
+  "blood": "Blood",
+  "medication": "Medication",
+  "for_today": "For today"
 }
