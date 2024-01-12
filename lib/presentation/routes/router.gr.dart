@@ -49,6 +49,15 @@ class AppRouter extends _i2.RootStackRouter {
         barrierDismissible: false,
       );
     },
+    DashboardRoute.name: (routeData) {
+      return _i2.CustomPage<dynamic>(
+        routeData: routeData,
+        child: const _i1.DashboardPage(),
+        transitionsBuilder: _i2.TransitionsBuilders.fadeIn,
+        opaque: true,
+        barrierDismissible: false,
+      );
+    },
   };
 
   @override
@@ -70,6 +79,10 @@ class AppRouter extends _i2.RootStackRouter {
         _i2.RouteConfig(
           RegisterRoute.name,
           path: '/register',
+        ),
+        _i2.RouteConfig(
+          DashboardRoute.name,
+          path: '/dashboard',
         ),
       ];
 }
@@ -108,4 +121,16 @@ class RegisterRoute extends _i2.PageRouteInfo<void> {
         );
 
   static const String name = 'RegisterRoute';
+}
+
+/// generated route for
+/// [_i1.DashboardPage]
+class DashboardRoute extends _i2.PageRouteInfo<void> {
+  const DashboardRoute()
+      : super(
+          DashboardRoute.name,
+          path: '/dashboard',
+        );
+
+  static const String name = 'DashboardRoute';
 }

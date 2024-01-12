@@ -84,11 +84,11 @@ class AppThemeData {
           // labelLarge: Button 1
           // displaySmall: Button 2
           displayLarge: GoogleFonts.sora(
-              color: ColorValues.text50, fontSize: 28, fontWeight: FontWeight.w600),
+              color: ColorValues.text50, fontSize: 28, fontWeight: FontWeight.w700),
           displayMedium: GoogleFonts.sora(
               color: ColorValues.text50, fontSize: 22, fontWeight: FontWeight.w700),
           displaySmall: GoogleFonts.sora(
-              color: ColorValues.text50, fontSize: 12, fontWeight: FontWeight.w700),
+              color: ColorValues.text50, fontSize: 18, fontWeight: FontWeight.w700),
           headlineMedium: GoogleFonts.sora(
               color: ColorValues.text50, fontSize: 34, fontWeight: FontWeight.w500),
           headlineSmall: GoogleFonts.sora(
@@ -106,9 +106,9 @@ class AppThemeData {
           bodySmall: GoogleFonts.sora(
               color: ColorValues.text50, fontSize: 12, fontWeight: FontWeight.w400),
           labelLarge: GoogleFonts.sora(
-              color: ColorValues.text50, fontSize: 15, fontWeight: FontWeight.w800),
-          labelSmall: GoogleFonts.sora(
               color: ColorValues.text50, fontSize: 12, fontWeight: FontWeight.w600),
+          labelSmall: GoogleFonts.sora(
+              color: ColorValues.text50, fontSize: 10, fontWeight: FontWeight.w400),
         ));
   }
 }

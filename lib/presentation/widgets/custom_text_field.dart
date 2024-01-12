@@ -22,7 +22,7 @@ class CustomTextField extends StatefulWidget {
       this.textInputType,
       this.onChanged,
       this.verticalPadding = 15,
-      this.horizontalPadding = UiConstants.smPadding,
+      this.horizontalPadding = UiConstants.mdPadding,
       this.minLines = 1,
       this.maxLines = 1,
       this.hasBorder = true,
@@ -90,7 +90,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 widget.helper!,
                 style: Theme.of(context)
                     .textTheme
-                    .labelSmall
+                    .labelLarge
                     ?.copyWith(color: ColorValues.grey50),
               )
             ],

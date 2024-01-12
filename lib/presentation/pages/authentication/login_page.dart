@@ -30,7 +30,7 @@ class _LoginPageState extends State<LoginPage> {
             SliverFillRemaining(
               hasScrollBody: false,
               child: Padding(
-                padding: const EdgeInsets.all(UiConstants.mdPadding),
+                padding: const EdgeInsets.all(UiConstants.lgPadding),
                 child: Column(
                   children: [
                     _buildHeading(),
@@ -39,7 +39,7 @@ class _LoginPageState extends State<LoginPage> {
                     const SizedBox(height: UiConstants.lgSpacing),
                     const Spacer(),
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: UiConstants.mdPadding),
+                      padding: const EdgeInsets.symmetric(vertical: UiConstants.lgPadding),
                       child: _buildRegisterButton(),
                     )
                   ],
@@ -107,7 +107,9 @@ class _LoginPageState extends State<LoginPage> {
         ),
         const SizedBox(height: UiConstants.lgSpacing),
         CustomElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            AutoRouter.of(context).replace(const DashboardRoute());
+          },
           child: Text(
             AppLocalizations.of(context).login,
           ),
@@ -152,7 +154,7 @@ class _LoginPageState extends State<LoginPage> {
         ),
         Text(
           AppLocalizations.of(context).or,
-          style: Theme.of(context).textTheme.labelSmall
+          style: Theme.of(context).textTheme.labelLarge
         ),
         Container(
           width: 64,

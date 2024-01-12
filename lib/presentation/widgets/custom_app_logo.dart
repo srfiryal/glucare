@@ -13,7 +13,7 @@ class CustomAppLogo extends StatelessWidget {
         const SizedBox(width: 6),
         Text(
           AppLocalizations.of(context).glucare,
-          style: Theme.of(context).textTheme.displayLarge,
+          style: Theme.of(context).textTheme.displayLarge?.copyWith(fontWeight: FontWeight.w600),
         ),
       ],
     );
