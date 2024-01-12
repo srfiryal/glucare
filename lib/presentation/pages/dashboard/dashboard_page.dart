@@ -7,6 +7,7 @@ import 'package:glucare/presentation/widgets/custom_shadow.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../core/ui_constants.dart';
+import '../../widgets/step_card_widget.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -378,8 +379,8 @@ class _DashboardPageState extends State<DashboardPage> {
                   ),
                   child: Image.asset(
                     'assets/ic_medication.png',
-                    width: 12,
-                    height: 12,
+                    width: 20,
+                    height: 20,
                   ),
                 ),
                 const SizedBox(width: UiConstants.xsSpacing),
@@ -410,7 +411,31 @@ class _DashboardPageState extends State<DashboardPage> {
                   size: 16,
                 ),
               ],
-            )
+            ),
+            const SizedBox(height: UiConstants.mdSpacing),
+            const StepCardWidget(
+                title: 'Paracetamol',
+                description1: '1x pill',
+                description2: '7am',
+                description3: 'After meal',
+                isFirst: true,
+                isActive: true,
+            ),
+            const StepCardWidget(
+                title: 'Paracetamol',
+                description1: '1x pill',
+                description2: '7am',
+                description3: 'After meal',
+                isActive: false,
+            ),
+            const StepCardWidget(
+                title: 'Paracetamol',
+                description1: '1x pill',
+                description2: '7am',
+                description3: 'After meal',
+                isLast: true,
+                isActive: false,
+            ),
           ],
         ),
       ),

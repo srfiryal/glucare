@@ -27,8 +27,8 @@ class ColorValues {
   static const success50 = Color(0xFF0BAC74);
   static const success40 = Color(0xFF67CD82);
   static const success30 = Color(0xFF6CCDAB);
-  static const success20 = Color(0xFFB3E6C1);
-  static const success10 = Color(0xFFD9F2E0);
+  static const success20 = Color(0xFF9DDEC7);
+  static const success10 = Color(0xFFCEEEE3);
   static const white = Color(0xFFFFFFFF);
   static const black = Color(0xFF000000);
 
