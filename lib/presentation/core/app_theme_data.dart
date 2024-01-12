@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:glucare/presentation/core/ui_constants.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
@@ -40,6 +41,39 @@ class AppThemeData {
           unselectedLabelStyle: GoogleFonts.sora(
               color: ColorValues.grey20, fontSize: 13, fontWeight: FontWeight.normal),
         ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.transparent,
+            foregroundColor: ColorValues.white,
+            elevation: 0,
+            textStyle: GoogleFonts.poppins(
+              color: ColorValues.white,
+              fontSize: 14,
+              fontWeight: FontWeight.w700,
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(UiConstants.lgRadius),
+            ),
+            minimumSize: const Size(double.infinity, 48),
+          ),
+        ),
+        outlinedButtonTheme: OutlinedButtonThemeData(
+          style: OutlinedButton.styleFrom(
+            backgroundColor: Colors.transparent,
+            foregroundColor: ColorValues.text50,
+            elevation: 0,
+            textStyle: GoogleFonts.poppins(
+              color: ColorValues.text50,
+              fontSize: 14,
+              fontWeight: FontWeight.w700,
+            ),
+            side: const BorderSide(color: ColorValues.grey10, width: 1),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(UiConstants.lgRadius),
+            ),
+            minimumSize: const Size(double.infinity, 48),
+          ),
+        ),
         iconTheme: IconThemeData(size: 6.w, color: ColorValues.grey50),
         textTheme: TextTheme(
           // titleLarge: Title 1
@@ -62,19 +96,19 @@ class AppThemeData {
           titleLarge: GoogleFonts.sora(
               color: ColorValues.text50, fontSize: 22, fontWeight: FontWeight.bold),
           titleMedium: GoogleFonts.sora(
-              color: ColorValues.text50, fontSize: 17, fontWeight: FontWeight.w700),
+              color: ColorValues.text50, fontSize: 14, fontWeight: FontWeight.w600),
           titleSmall: GoogleFonts.sora(
-              color: ColorValues.text50, fontSize: 14, fontWeight: FontWeight.w700),
+              color: ColorValues.text50, fontSize: 12, fontWeight: FontWeight.w700),
           bodyLarge: GoogleFonts.sora(
               color: ColorValues.text50, fontSize: 20, fontWeight: FontWeight.w700),
           bodyMedium: GoogleFonts.sora(
-              color: ColorValues.text50, fontSize: 14, fontWeight: FontWeight.w600),
-          labelLarge: GoogleFonts.sora(
-              color: ColorValues.text50, fontSize: 15, fontWeight: FontWeight.w800),
+              color: ColorValues.text50, fontSize: 14, fontWeight: FontWeight.w400),
           bodySmall: GoogleFonts.sora(
               color: ColorValues.text50, fontSize: 12, fontWeight: FontWeight.w400),
+          labelLarge: GoogleFonts.sora(
+              color: ColorValues.text50, fontSize: 15, fontWeight: FontWeight.w800),
           labelSmall: GoogleFonts.sora(
-              color: ColorValues.text50, fontSize: 10, fontWeight: FontWeight.w700, letterSpacing: 0.4),
+              color: ColorValues.text50, fontSize: 12, fontWeight: FontWeight.w600),
         ));
   }
 }
