@@ -58,6 +58,15 @@ class AppRouter extends _i2.RootStackRouter {
         barrierDismissible: false,
       );
     },
+    DiabetesCheckerRoute.name: (routeData) {
+      return _i2.CustomPage<dynamic>(
+        routeData: routeData,
+        child: const _i1.DiabetesCheckerPage(),
+        transitionsBuilder: _i2.TransitionsBuilders.fadeIn,
+        opaque: true,
+        barrierDismissible: false,
+      );
+    },
   };
 
   @override
@@ -83,6 +92,10 @@ class AppRouter extends _i2.RootStackRouter {
         _i2.RouteConfig(
           DashboardRoute.name,
           path: '/dashboard',
+        ),
+        _i2.RouteConfig(
+          DiabetesCheckerRoute.name,
+          path: '/diabetes_checker',
         ),
       ];
 }
@@ -133,4 +146,16 @@ class DashboardRoute extends _i2.PageRouteInfo<void> {
         );
 
   static const String name = 'DashboardRoute';
+}
+
+/// generated route for
+/// [_i1.DiabetesCheckerPage]
+class DiabetesCheckerRoute extends _i2.PageRouteInfo<void> {
+  const DiabetesCheckerRoute()
+      : super(
+          DiabetesCheckerRoute.name,
+          path: '/diabetes_checker',
+        );
+
+  static const String name = 'DiabetesCheckerRoute';
 }

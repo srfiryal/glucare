@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:glucare/presentation/core/color_values.dart';
 import 'package:glucare/presentation/core/ui_constants.dart';
 
-class CustomElevatedButton extends StatelessWidget {
+class CustomButton extends StatelessWidget {
   final VoidCallback onPressed;
-  final Widget child;
+  final String text;
+  final bool isOutlined;
 
-  const CustomElevatedButton({super.key, required this.onPressed, required this.child});
+  const CustomButton({super.key, required this.onPressed, required this.text, this.isOutlined = false});
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +24,14 @@ class CustomElevatedButton extends StatelessWidget {
         ),
         borderRadius: BorderRadius.circular(UiConstants.lgRadius),
       ),
-      child: ElevatedButton(
+      child: isOutlined
+      ? OutlinedButton(
         onPressed: onPressed,
-        child: child,
+        child: Text(text),
+      )
+      : ElevatedButton(
+        onPressed: onPressed,
+        child: Text(text),
       ),
     );
   }

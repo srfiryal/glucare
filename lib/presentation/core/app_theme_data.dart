@@ -26,8 +26,8 @@ class AppThemeData {
     return ThemeData(
         primaryColor: primaryColor,
         primarySwatch: primaryMaterialColor,
-        scaffoldBackgroundColor: ColorValues.background,
-        canvasColor: ColorValues.background,
+        scaffoldBackgroundColor: ColorValues.surface,
+        canvasColor: ColorValues.surface,
         brightness: Brightness.light,
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
           elevation: 0,
@@ -59,15 +59,15 @@ class AppThemeData {
         ),
         outlinedButtonTheme: OutlinedButtonThemeData(
           style: OutlinedButton.styleFrom(
-            backgroundColor: Colors.transparent,
-            foregroundColor: ColorValues.text50,
+            backgroundColor: ColorValues.surface,
+            foregroundColor: ColorValues.primary30,
             elevation: 0,
             textStyle: GoogleFonts.poppins(
               color: ColorValues.text50,
               fontSize: 14,
               fontWeight: FontWeight.w700,
             ),
-            side: const BorderSide(color: ColorValues.grey10, width: 1),
+            side: const BorderSide(color: ColorValues.primary30, width: 1),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(UiConstants.lgRadius),
             ),

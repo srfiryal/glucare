@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:glucare/l10n/l10n.dart';
 import 'package:glucare/presentation/core/ui_constants.dart';
 import 'package:glucare/presentation/routes/router.gr.dart';
-import 'package:glucare/presentation/widgets/custom_elevated_button.dart';
+import 'package:glucare/presentation/widgets/custom_button.dart';
 import 'package:glucare/presentation/widgets/custom_text_field.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -106,13 +106,11 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
         const SizedBox(height: UiConstants.lgSpacing),
-        CustomElevatedButton(
+        CustomButton(
           onPressed: () {
             AutoRouter.of(context).replace(const DashboardRoute());
           },
-          child: Text(
-            AppLocalizations.of(context).login,
-          ),
+          text: AppLocalizations.of(context).login,
         ),
         const SizedBox(height: UiConstants.mdSpacing),
         _buildOrDivider(),

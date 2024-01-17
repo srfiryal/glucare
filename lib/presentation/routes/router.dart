@@ -27,6 +27,10 @@ import '../pages/screens.dart';
         page: DashboardPage,
         path: '/dashboard',
         transitionsBuilder: TransitionsBuilders.fadeIn),
+    CustomRoute(
+        page: DiabetesCheckerPage,
+        path: '/diabetes_checker',
+        transitionsBuilder: TransitionsBuilders.fadeIn),
   ],
 )
 class $AppRouter {}

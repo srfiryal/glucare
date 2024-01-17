@@ -7,7 +7,7 @@ import 'package:iconsax/iconsax.dart';
 import '../../../l10n/l10n.dart';
 import '../../core/color_values.dart';
 import '../../core/ui_constants.dart';
-import '../../widgets/custom_elevated_button.dart';
+import '../../widgets/custom_button.dart';
 import '../../widgets/custom_text_field.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -108,13 +108,11 @@ class _RegisterPageState extends State<RegisterPage> {
           isPassword: true,
         ),
         const SizedBox(height: UiConstants.lgSpacing),
-        CustomElevatedButton(
+        CustomButton(
           onPressed: () {
             AutoRouter.of(context).replace(const DashboardRoute());
           },
-          child: Text(
-            AppLocalizations.of(context).register,
-          ),
+          text: AppLocalizations.of(context).register,
         ),
         const SizedBox(height: UiConstants.mdSpacing),
         _buildOrDivider(),

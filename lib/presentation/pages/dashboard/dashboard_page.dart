@@ -1,3 +1,5 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:glucare/l10n/l10n.dart';
 import 'package:glucare/presentation/core/color_values.dart';
@@ -7,6 +9,7 @@ import 'package:glucare/presentation/widgets/custom_shadow.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../core/ui_constants.dart';
+import '../../routes/router.gr.dart';
 import '../../widgets/step_card_widget.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -38,6 +41,9 @@ class _DashboardPageState extends State<DashboardPage> {
                       startColor: ColorValues.primary30,
                       endColor: ColorValues.primary50,
                       hasArrowIcon: true,
+                      onTap: () {
+                        AutoRouter.of(context).push(const DiabetesCheckerRoute());
+                      },
                     ),
                     _buildSectionSpacing(),
                     _buildHealthInfo(),
@@ -86,7 +92,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 border: Border.all(color: ColorValues.primary10, width: 2),
                 borderRadius: BorderRadius.circular(UiConstants.lgRadius),
                 image: const DecorationImage(
-                  image: NetworkImage('https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHlvdW5nJTIwbWFufGVufDB8fDB8fHww'),
+                  image: CachedNetworkImageProvider('https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHlvdW5nJTIwbWFufGVufDB8fDB8fHww'),
                   fit: BoxFit.cover,
                 )
               ),

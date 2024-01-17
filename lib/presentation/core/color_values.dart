@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 class ColorValues {
-  static const background = Color(0xFFFAFAFA);
+  static const surface = Color(0xFFFAFAFA);
   static const primary50 = Color(0xFF6A6DB0);
   static const primary30 = Color(0xFFA6A7D0);
   static const primary10 = Color(0xFFE1E2EF);
