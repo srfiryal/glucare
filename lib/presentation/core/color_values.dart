@@ -39,6 +39,7 @@ class ColorValues {
   static const teal50 = Color(0xFF12ADC1);
   static const teal40 = Color(0xFF41BDCD);
   static const teal30 = Color(0xFF71CEDA);
+  static const teal10 = Color(0xFFD0EFF3);
   static const white = Color(0xFFFFFFFF);
   static const black = Color(0xFF000000);
 

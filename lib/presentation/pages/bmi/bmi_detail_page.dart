@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:glucare/data/models/check_history/check_history_model.dart';
 import 'package:glucare/l10n/l10n.dart';
@@ -13,27 +15,27 @@ import '../../widgets/custom_gradient_icon.dart';
 import '../../widgets/custom_history_card.dart';
 import '../../widgets/custom_shadow.dart';
 
-class GlucoseDetailPage extends StatefulWidget {
-  const GlucoseDetailPage({super.key});
+class BmiDetailPage extends StatefulWidget {
+  const BmiDetailPage({super.key});
 
   @override
-  State<GlucoseDetailPage> createState() => _GlucoseDetailPageState();
+  State<BmiDetailPage> createState() => _BmiDetailPageState();
 }
 
-class _GlucoseDetailPageState extends State<GlucoseDetailPage> {
+class _BmiDetailPageState extends State<BmiDetailPage> {
   final List<DateTabModel> _tabs = [
-    DateTabModel(value: '110', date: DateTime(2024, 1, 20)),
-    DateTabModel(value: '80', date: DateTime(2024, 1, 19)),
-    DateTabModel(value: '90', date: DateTime(2024, 1, 18)),
-    DateTabModel(value: '75', date: DateTime(2024, 1, 17)),
-    DateTabModel(value: '121', date: DateTime(2024, 1, 16)),
-    DateTabModel(value: '111', date: DateTime(2024, 1, 15)),
-    DateTabModel(value: '110', date: DateTime(2024, 1, 14)),
-    DateTabModel(value: '90', date: DateTime(2024, 1, 13)),
+    DateTabModel(value: '24.1', date: DateTime(2024, 1, 20)),
+    DateTabModel(value: '24.1', date: DateTime(2024, 1, 19)),
+    DateTabModel(value: '24.1', date: DateTime(2024, 1, 18)),
+    DateTabModel(value: '24.1', date: DateTime(2024, 1, 17)),
+    DateTabModel(value: '24.1', date: DateTime(2024, 1, 16)),
+    DateTabModel(value: '24.1', date: DateTime(2024, 1, 15)),
+    DateTabModel(value: '24.1', date: DateTime(2024, 1, 14)),
+    DateTabModel(value: '24.1', date: DateTime(2024, 1, 13)),
   ];
   final List<CheckHistoryModel> _history = [
-    CheckHistoryModel(time: DateTime(2024, 20, 1, 18, 0), value: 110, tag: 'After meal', unit: 'mg/dL'),
-    CheckHistoryModel(time: DateTime(2024, 20, 1, 12, 0), value: 110, tag: 'After meal', unit: 'mg/dL'),
+    CheckHistoryModel(time: DateTime(2024, 20, 1, 18, 0), value: 180, tag: 'Height', unit: 'cm'),
+    CheckHistoryModel(time: DateTime(2024, 20, 1, 12, 0), value: 75, tag: 'Weight', unit: 'kg'),
   ];
   late DateTabModel _selectedTab;
 
@@ -51,7 +53,7 @@ class _GlucoseDetailPageState extends State<GlucoseDetailPage> {
         child: Column(
           children: [
             CustomAppBar(
-              title: AppLocalizations.of(context).glucose,
+              title: AppLocalizations.of(context).body_mass_index,
             ),
             Expanded(
               child: SingleChildScrollView(
@@ -64,9 +66,9 @@ class _GlucoseDetailPageState extends State<GlucoseDetailPage> {
                       padding: const EdgeInsets.symmetric(horizontal: UiConstants.lgPadding),
                       child: Column(
                         children: [
-                          _buildCurrentGlucose(),
+                          _buildCurrentBmi(),
                           const SizedBox(height: UiConstants.mdSpacing),
-                          _buildGlucoseIndex(),
+                          _buildWeightHeight(),
                           const SizedBox(height: UiConstants.mdSpacing),
                           _buildHistory(),
                         ],
@@ -88,32 +90,32 @@ class _GlucoseDetailPageState extends State<GlucoseDetailPage> {
       height: 88,
       decoration: const BoxDecoration(color: ColorValues.white),
       child: ListView.separated(
-        primary: false,
-        shrinkWrap: true,
-        padding: const EdgeInsets.symmetric(vertical: UiConstants.smPadding, horizontal: UiConstants.lgPadding),
-        scrollDirection: Axis.horizontal,
-        itemCount: _tabs.length,
-        itemBuilder: (context, index) {
-          final DateTabModel tab = _tabs[index];
-          return CustomDateTab(
-            type: 'glucose',
-            isSelected: _selectedTab == tab,
-            onTap: () {
-              setState(() {
-                _selectedTab = tab;
-              });
-            },
-            dateTabModel: tab,
-          );
-        },
-        separatorBuilder: (context, index) {
-          return const SizedBox(width: UiConstants.smSpacing);
-        }
+          primary: false,
+          shrinkWrap: true,
+          padding: const EdgeInsets.symmetric(vertical: UiConstants.smPadding, horizontal: UiConstants.lgPadding),
+          scrollDirection: Axis.horizontal,
+          itemCount: _tabs.length,
+          itemBuilder: (context, index) {
+            final DateTabModel tab = _tabs[index];
+            return CustomDateTab(
+              type: 'bmi',
+              isSelected: _selectedTab == tab,
+              onTap: () {
+                setState(() {
+                  _selectedTab = tab;
+                });
+              },
+              dateTabModel: tab,
+            );
+          },
+          separatorBuilder: (context, index) {
+            return const SizedBox(width: UiConstants.smSpacing);
+          }
       ),
     );
   }
 
-  Widget _buildCurrentGlucose() {
+  Widget _buildCurrentBmi() {
     return CustomShadow(
       child: Container(
         padding: const EdgeInsets.all(UiConstants.smPadding),
@@ -130,10 +132,10 @@ class _GlucoseDetailPageState extends State<GlucoseDetailPage> {
                   padding: const EdgeInsets.all(6),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(UiConstants.maxRadius),
-                    color: ColorValues.primary10,
+                    color: ColorValues.teal10,
                   ),
                   child: Image.asset(
-                    'assets/ic_diabetes_measure.png',
+                    'assets/ic_bmi.png',
                     width: 12,
                     height: 12,
                   ),
@@ -141,7 +143,7 @@ class _GlucoseDetailPageState extends State<GlucoseDetailPage> {
                 const SizedBox(width: UiConstants.xsSpacing),
                 Expanded(
                   child: Text(
-                    AppLocalizations.of(context).current_glucose,
+                    AppLocalizations.of(context).current_bmi,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       fontWeight: FontWeight.w600,
                     ),
@@ -163,11 +165,11 @@ class _GlucoseDetailPageState extends State<GlucoseDetailPage> {
               overflow: TextOverflow.ellipsis,
               textAlign: TextAlign.center,
               text: TextSpan(
-                text: '110',
+                text: '24.1',
                 style: Theme.of(context).textTheme.displayLarge,
                 children: [
                   TextSpan(
-                      text: UiConstants.glucoseUnit,
+                      text: UiConstants.bmiUnit,
                       style: Theme.of(context).textTheme.bodySmall
                   ),
                 ],
@@ -186,20 +188,10 @@ class _GlucoseDetailPageState extends State<GlucoseDetailPage> {
                     size: 12
                 ),
                 const SizedBox(width: UiConstants.xxsSpacing),
-                RichText(
-                  text: TextSpan(
-                    text: 'Normal',
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      fontWeight: FontWeight.w600,
-                    ),
-                    children: [
-                      TextSpan(
-                        text: ' (You are on good state!)',
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          fontWeight: FontWeight.w400,
-                        ),
-                      )
-                    ]
+                Text(
+                  'Healthy Weight',
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
               ],
@@ -217,96 +209,78 @@ class _GlucoseDetailPageState extends State<GlucoseDetailPage> {
     );
   }
 
-  Widget _buildGlucoseIndex() {
+  Widget _buildWeightHeight() {
+    return Row(
+      children: [
+        Expanded(
+          child: _buildIndexCard(
+            title: AppLocalizations.of(context).weight,
+            value: 76,
+            unit: 'kg',
+            onTap: () {},
+          ),
+        ),
+        const SizedBox(width: UiConstants.mdSpacing),
+        Expanded(
+          child: _buildIndexCard(
+            title: AppLocalizations.of(context).height,
+            value: 178,
+            unit: 'cm',
+            onTap: () {},
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildIndexCard({required String title, required double value, required String unit, required VoidCallback onTap}) {
     return CustomShadow(
+      isBlur: false,
       child: Container(
-        padding: const EdgeInsets.all(UiConstants.smPadding),
+        padding: const EdgeInsets.all(UiConstants.mdPadding),
         width: double.infinity,
         decoration: BoxDecoration(
+          border: Border.all(color: ColorValues.grey10, width: 1),
           borderRadius: BorderRadius.circular(UiConstants.lgRadius),
           color: ColorValues.white,
         ),
-        child: Row(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildGlucoseLevel(
-                name: AppLocalizations.of(context).hypoglyc,
-                value: '<80',
-                icon: Iconsax.arrow_circle_down4,
-                iconBackground: ColorValues.warning10,
-                iconColorStart: ColorValues.warning30,
-                iconColorEnd: ColorValues.warning50
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    title,
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                ),
+                const SizedBox(width: UiConstants.xsSpacing),
+                const Icon(
+                  Iconsax.edit_25,
+                  color: ColorValues.grey90,
+                  size: 12,
+                )
+              ]
             ),
-            const SizedBox(width: UiConstants.mdSpacing),
-            _buildGlucoseLevel(
-                name: AppLocalizations.of(context).normal,
-                value: '>79',
-                icon: Iconsax.like_15,
-                iconBackground: ColorValues.success10,
-                iconColorStart: ColorValues.success30,
-                iconColorEnd: ColorValues.success50
-            ),
-            const SizedBox(width: UiConstants.mdSpacing),
-            _buildGlucoseLevel(
-                name: AppLocalizations.of(context).hyperglyc,
-                value: '>120',
-                icon: Iconsax.arrow_circle_up3,
-                iconBackground: ColorValues.danger10,
-                iconColorStart: ColorValues.danger30,
-                iconColorEnd: ColorValues.danger50
+            const SizedBox(height: UiConstants.xxsSpacing),
+            RichText(
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              text: TextSpan(
+                text: value.toString(),
+                style: Theme.of(context).textTheme.displaySmall?.copyWith(color: ColorValues.teal50),
+                children: [
+                  TextSpan(
+                      text: unit,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(color: ColorValues.teal50),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildGlucoseLevel({required String name, required String value, required IconData icon, required Color iconBackground, required Color iconColorStart, required iconColorEnd}) {
-    return Expanded(
-        child: Row(
-          children: [
-            CustomGradientIcon(
-                icon: icon,
-                backgroundColor: iconBackground,
-                colorStart: iconColorStart,
-                colorEnd: iconColorEnd,
-                padding: 2,
-                size: 12
-            ),
-            const SizedBox(width: UiConstants.xxsSpacing),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  name,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: ColorValues.grey50,
-                  ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                const SizedBox(height: 2),
-                RichText(
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  text: TextSpan(
-                    text: value,
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      fontWeight: FontWeight.w600,
-                    ),
-                    children: [
-                      TextSpan(
-                        text: UiConstants.glucoseUnit,
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: ColorValues.grey50,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            )
-          ],
-        )
     );
   }
 
@@ -325,9 +299,9 @@ class _GlucoseDetailPageState extends State<GlucoseDetailPage> {
               children: [
                 const CustomGradientIcon(
                     icon: Iconsax.clock5,
-                    backgroundColor: ColorValues.primary10,
-                    colorStart: ColorValues.primary30,
-                    colorEnd: ColorValues.primary50,
+                    backgroundColor: ColorValues.teal10,
+                    colorStart: ColorValues.teal30,
+                    colorEnd: ColorValues.teal50,
                     padding: 6,
                     size: 12
                 ),
@@ -350,7 +324,7 @@ class _GlucoseDetailPageState extends State<GlucoseDetailPage> {
               itemBuilder: (context, index) {
                 return CustomHistoryCard(
                   checkHistoryModel: _history[index],
-                  type: 'glucose',
+                  type: 'bmi',
                 );
               },
               separatorBuilder: (context, index) {

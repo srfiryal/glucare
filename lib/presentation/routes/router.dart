@@ -35,6 +35,10 @@ import '../pages/screens.dart';
         page: GlucoseDetailPage,
         path: '/glucose_detail',
         transitionsBuilder: TransitionsBuilders.fadeIn),
+    CustomRoute(
+        page: BmiDetailPage,
+        path: '/bmi_detail',
+        transitionsBuilder: TransitionsBuilders.fadeIn),
   ],
 )
 class $AppRouter {}

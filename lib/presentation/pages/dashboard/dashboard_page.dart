@@ -260,6 +260,9 @@ class _DashboardPageState extends State<DashboardPage> {
             unit: UiConstants.bmiUnit,
             status: 'Healthy Weight',
             update: 'Updated just now',
+            onTap: () {
+              AutoRouter.of(context).push(const BmiDetailRoute());
+            },
           ),
         ),
         const SizedBox(width: UiConstants.mdSpacing),
@@ -270,101 +273,105 @@ class _DashboardPageState extends State<DashboardPage> {
             unit: UiConstants.bloodPressureUnit,
             status: 'Normal',
             update: 'Updated yesterday',
+            onTap: () {},
           ),
         ),
       ],
     );
   }
 
-  Widget _buildHealthLevelCard({required String title, required String value, required String unit, required String status, required String update}) {
-    return CustomShadow(
-      child: Container(
-        padding: const EdgeInsets.all(UiConstants.smPadding),
-        width: double.infinity,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(UiConstants.lgRadius),
-          color: ColorValues.white,
-        ),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(6),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(UiConstants.maxRadius),
-                    color: title == AppLocalizations.of(context).bmi ? ColorValues.info10 : ColorValues.warning10,
+  Widget _buildHealthLevelCard({required String title, required String value, required String unit, required String status, required String update, required VoidCallback onTap}) {
+    return GestureDetector(
+      onTap: onTap,
+      child: CustomShadow(
+        child: Container(
+          padding: const EdgeInsets.all(UiConstants.smPadding),
+          width: double.infinity,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(UiConstants.lgRadius),
+            color: ColorValues.white,
+          ),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(6),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(UiConstants.maxRadius),
+                      color: title == AppLocalizations.of(context).bmi ? ColorValues.info10 : ColorValues.warning10,
+                    ),
+                    child: Image.asset(
+                      title == AppLocalizations.of(context).bmi ? 'assets/ic_bmi.png' : 'assets/ic_blood_pressure.png',
+                      width: 12,
+                      height: 12,
+                    ),
                   ),
-                  child: Image.asset(
-                    title == AppLocalizations.of(context).bmi ? 'assets/ic_bmi.png' : 'assets/ic_blood_pressure.png',
-                    width: 12,
-                    height: 12,
+                  const SizedBox(width: UiConstants.xsSpacing),
+                  Expanded(
+                    child: Text(
+                      title,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        fontWeight: FontWeight.w600,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
+                  const SizedBox(width: UiConstants.mdSpacing),
+                  const Icon(
+                    Iconsax.arrow_right_3,
+                    color: ColorValues.grey90,
+                    size: 16,
+                  )
+                ],
+              ),
+              const SizedBox(height: UiConstants.lgSpacing),
+              RichText(
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                  text: value,
+                  style: Theme.of(context).textTheme.displayLarge,
+                  children: [
+                    TextSpan(
+                      text: unit,
+                      style: Theme.of(context).textTheme.bodySmall
+                    ),
+                  ],
                 ),
-                const SizedBox(width: UiConstants.xsSpacing),
-                Expanded(
-                  child: Text(
-                    title,
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              ),
+              const SizedBox(height: UiConstants.xsSpacing),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const CustomGradientIcon(
+                    icon: Iconsax.like_15,
+                    backgroundColor: ColorValues.success10,
+                    colorStart: ColorValues.success30,
+                    colorEnd: ColorValues.success50,
+                    padding: 2,
+                    size: 12
+                  ),
+                  const SizedBox(width: UiConstants.xxsSpacing),
+                  Text(
+                    status,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       fontWeight: FontWeight.w600,
                     ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-                const SizedBox(width: UiConstants.mdSpacing),
-                const Icon(
-                  Iconsax.arrow_right_3,
-                  color: ColorValues.grey90,
-                  size: 16,
-                )
-              ],
-            ),
-            const SizedBox(height: UiConstants.lgSpacing),
-            RichText(
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              textAlign: TextAlign.center,
-              text: TextSpan(
-                text: value,
-                style: Theme.of(context).textTheme.displayLarge,
-                children: [
-                  TextSpan(
-                    text: unit,
-                    style: Theme.of(context).textTheme.bodySmall
                   ),
                 ],
               ),
-            ),
-            const SizedBox(height: UiConstants.xsSpacing),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const CustomGradientIcon(
-                  icon: Iconsax.like_15,
-                  backgroundColor: ColorValues.success10,
-                  colorStart: ColorValues.success30,
-                  colorEnd: ColorValues.success50,
-                  padding: 2,
-                  size: 12
-                ),
-                const SizedBox(width: UiConstants.xxsSpacing),
-                Text(
-                  status,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: UiConstants.lgSpacing),
-            Text(
-              update,
-              style: Theme.of(context).textTheme.labelSmall?.copyWith(color: ColorValues.grey50),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: UiConstants.xxsSpacing),
-          ],
+              const SizedBox(height: UiConstants.lgSpacing),
+              Text(
+                update,
+                style: Theme.of(context).textTheme.labelSmall?.copyWith(color: ColorValues.grey50),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: UiConstants.xxsSpacing),
+            ],
+          ),
         ),
       ),
     );

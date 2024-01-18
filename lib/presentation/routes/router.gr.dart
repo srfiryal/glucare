@@ -76,6 +76,15 @@ class AppRouter extends _i2.RootStackRouter {
         barrierDismissible: false,
       );
     },
+    BmiDetailRoute.name: (routeData) {
+      return _i2.CustomPage<dynamic>(
+        routeData: routeData,
+        child: const _i1.BmiDetailPage(),
+        transitionsBuilder: _i2.TransitionsBuilders.fadeIn,
+        opaque: true,
+        barrierDismissible: false,
+      );
+    },
   };
 
   @override
@@ -109,6 +118,10 @@ class AppRouter extends _i2.RootStackRouter {
         _i2.RouteConfig(
           GlucoseDetailRoute.name,
           path: '/glucose_detail',
+        ),
+        _i2.RouteConfig(
+          BmiDetailRoute.name,
+          path: '/bmi_detail',
         ),
       ];
 }
@@ -183,4 +196,16 @@ class GlucoseDetailRoute extends _i2.PageRouteInfo<void> {
         );
 
   static const String name = 'GlucoseDetailRoute';
+}
+
+/// generated route for
+/// [_i1.BmiDetailPage]
+class BmiDetailRoute extends _i2.PageRouteInfo<void> {
+  const BmiDetailRoute()
+      : super(
+          BmiDetailRoute.name,
+          path: '/bmi_detail',
+        );
+
+  static const String name = 'BmiDetailRoute';
 }

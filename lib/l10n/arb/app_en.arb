@@ -80,5 +80,8 @@
   "current_glucose": "Current Glucose",
   "history": "History",
   "weight_hint": "Enter your weight",
-  "height_hint": "Enter your height"
+  "height_hint": "Enter your height",
+  "current_bmi": "Current BMI",
+  "current_weight": "Current Weight",
+  "current_height": "Current Height"
 }
