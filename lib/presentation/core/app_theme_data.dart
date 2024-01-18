@@ -88,7 +88,7 @@ class AppThemeData {
           displayMedium: GoogleFonts.sora(
               color: ColorValues.text50, fontSize: 22, fontWeight: FontWeight.w700),
           displaySmall: GoogleFonts.sora(
-              color: ColorValues.text50, fontSize: 18, fontWeight: FontWeight.w700),
+              color: ColorValues.text50, fontSize: 18, fontWeight: FontWeight.w600),
           headlineMedium: GoogleFonts.sora(
               color: ColorValues.text50, fontSize: 34, fontWeight: FontWeight.w500),
           headlineSmall: GoogleFonts.sora(
@@ -104,7 +104,7 @@ class AppThemeData {
           bodyMedium: GoogleFonts.sora(
               color: ColorValues.text50, fontSize: 14, fontWeight: FontWeight.w400),
           bodySmall: GoogleFonts.sora(
-              color: ColorValues.text50, fontSize: 12, fontWeight: FontWeight.w400),
+              color: ColorValues.text50, fontSize: 12, fontWeight: FontWeight.w400, letterSpacing: 0.25),
           labelLarge: GoogleFonts.sora(
               color: ColorValues.text50, fontSize: 12, fontWeight: FontWeight.w600),
           labelSmall: GoogleFonts.sora(

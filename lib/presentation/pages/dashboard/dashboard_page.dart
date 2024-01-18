@@ -77,7 +77,7 @@ class _DashboardPageState extends State<DashboardPage> {
                   const SizedBox(height: UiConstants.xxsSpacing),
                   Text(
                     'Bayu Prajiwaksana',
-                    style: Theme.of(context).textTheme.displaySmall,
+                    style: Theme.of(context).textTheme.displaySmall?.copyWith(fontWeight: FontWeight.w700),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -113,47 +113,52 @@ class _DashboardPageState extends State<DashboardPage> {
         ),
         child: Column(
           children: [
-            Row(
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(UiConstants.maxRadius),
-                    color: ColorValues.primary10,
+            GestureDetector(
+              onTap: () {
+                AutoRouter.of(context).push(const GlucoseDetailRoute());
+              },
+              child: Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(UiConstants.maxRadius),
+                      color: ColorValues.primary10,
+                    ),
+                    child: Image.asset(
+                      'assets/ic_diabetes_measure.png',
+                      width: 24,
+                      height: 24,
+                    ),
                   ),
-                  child: Image.asset(
-                    'assets/ic_diabetes_measure.png',
-                    width: 24,
-                    height: 24,
-                  ),
-                ),
-                const SizedBox(width: UiConstants.xsSpacing),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '${AppLocalizations.of(context).glucose}: 110${UiConstants.glucoseUnit}',
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          fontWeight: FontWeight.w600,
+                  const SizedBox(width: UiConstants.xsSpacing),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '${AppLocalizations.of(context).glucose}: 110${UiConstants.glucoseUnit}',
+                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
-                      ),
-                      Text(
-                        'You’re on good state!',
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: ColorValues.grey50,
+                        Text(
+                          'You’re on good state!',
+                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: ColorValues.grey50,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                const SizedBox(width: UiConstants.mdSpacing),
-                const Icon(
-                  Iconsax.arrow_right_3,
-                  color: ColorValues.grey90,
-                  size: 24,
-                )
-              ]
+                  const SizedBox(width: UiConstants.mdSpacing),
+                  const Icon(
+                    Iconsax.arrow_right_3,
+                    color: ColorValues.grey90,
+                    size: 24,
+                  )
+                ]
+              ),
             ),
             const SizedBox(height: UiConstants.smSpacing),
             Row(

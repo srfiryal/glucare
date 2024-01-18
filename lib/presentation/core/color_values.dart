@@ -2,7 +2,9 @@ import 'dart:ui';
 
 class ColorValues {
   static const surface = Color(0xFFFAFAFA);
+  static const primary60 = Color(0xFF55578D);
   static const primary50 = Color(0xFF6A6DB0);
+  static const primary40 = Color(0xFF888AC0);
   static const primary30 = Color(0xFFA6A7D0);
   static const primary10 = Color(0xFFE1E2EF);
   static const grey90 = Color(0xFF131414);
@@ -17,11 +19,15 @@ class ColorValues {
   static const info50 = Color(0xFF3892F3);
   static const info20 = Color(0xFFAFD3FA);
   static const info10 = Color(0xFFD7E9FD);
+  static const danger60 = Color(0xFFBB2D21);
   static const danger50 = Color(0xFFEA3829);
+  static const danger40 = Color(0xFFEE6054);
   static const danger30 = Color(0xFFF2887F);
   static const danger20 = Color(0xFFF7AFA9);
   static const danger10 = Color(0xFFFBD7D4);
+  static const warning60 = Color(0xFFC56A1D);
   static const warning50 = Color(0xFFF68524);
+  static const warning40 = Color(0xFFF89D50);
   static const warning30 = Color(0xFFFAB67C);
   static const warning10 = Color(0xFFFDE7D3);
   static const success50 = Color(0xFF0BAC74);
@@ -29,6 +35,10 @@ class ColorValues {
   static const success30 = Color(0xFF6CCDAB);
   static const success20 = Color(0xFF9DDEC7);
   static const success10 = Color(0xFFCEEEE3);
+  static const teal60 = Color(0xFF0E8A9A);
+  static const teal50 = Color(0xFF12ADC1);
+  static const teal40 = Color(0xFF41BDCD);
+  static const teal30 = Color(0xFF71CEDA);
   static const white = Color(0xFFFFFFFF);
   static const black = Color(0xFF000000);
 

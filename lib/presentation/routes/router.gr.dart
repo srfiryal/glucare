@@ -67,6 +67,15 @@ class AppRouter extends _i2.RootStackRouter {
         barrierDismissible: false,
       );
     },
+    GlucoseDetailRoute.name: (routeData) {
+      return _i2.CustomPage<dynamic>(
+        routeData: routeData,
+        child: const _i1.GlucoseDetailPage(),
+        transitionsBuilder: _i2.TransitionsBuilders.fadeIn,
+        opaque: true,
+        barrierDismissible: false,
+      );
+    },
   };
 
   @override
@@ -96,6 +105,10 @@ class AppRouter extends _i2.RootStackRouter {
         _i2.RouteConfig(
           DiabetesCheckerRoute.name,
           path: '/diabetes_checker',
+        ),
+        _i2.RouteConfig(
+          GlucoseDetailRoute.name,
+          path: '/glucose_detail',
         ),
       ];
 }
@@ -158,4 +171,16 @@ class DiabetesCheckerRoute extends _i2.PageRouteInfo<void> {
         );
 
   static const String name = 'DiabetesCheckerRoute';
+}
+
+/// generated route for
+/// [_i1.GlucoseDetailPage]
+class GlucoseDetailRoute extends _i2.PageRouteInfo<void> {
+  const GlucoseDetailRoute()
+      : super(
+          GlucoseDetailRoute.name,
+          path: '/glucose_detail',
+        );
+
+  static const String name = 'GlucoseDetailRoute';
 }

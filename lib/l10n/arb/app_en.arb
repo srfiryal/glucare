@@ -65,8 +65,8 @@
   "weight": "Weight",
   "input_glucose": "Input your glucose",
   "test_taking_time": "When did you take the test?",
-  "before_meals": "Before meals",
-  "after_meals": "After meals",
+  "before_meal": "Before meal",
+  "after_meal": "After meal",
   "fasting": "Fasting",
   "summary": "This is a summary for you",
   "glucose_healthy": "Your glucose is healthy",
@@ -75,5 +75,8 @@
   "glucose_hyper_desc": "Limit sugar and carbohydrate intake",
   "glucose_hypo": "Hypoglycemia alert",
   "glucose_hypo_desc": "Eat more sugar and carbohydrate",
-  "back_to_home": "Back to Home"
+  "back_to_home": "Back to Home",
+  "body_mass_index": "Body Mass Index",
+  "current_glucose": "Current Glucose",
+  "history": "History"
 }
