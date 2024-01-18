@@ -83,5 +83,9 @@
   "height_hint": "Enter your height",
   "current_bmi": "Current BMI",
   "current_weight": "Current Weight",
-  "current_height": "Current Height"
+  "current_height": "Current Height",
+  "blood_pressure": "Blood Pressure",
+  "current_blood_pressure": "Current Blood Pressure",
+  "hypo": "Hypo",
+  "hyper": "Hyper"
 }

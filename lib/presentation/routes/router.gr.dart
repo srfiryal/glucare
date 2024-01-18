@@ -85,6 +85,15 @@ class AppRouter extends _i2.RootStackRouter {
         barrierDismissible: false,
       );
     },
+    BloodPressureDetailRoute.name: (routeData) {
+      return _i2.CustomPage<dynamic>(
+        routeData: routeData,
+        child: const _i1.BloodPressureDetailPage(),
+        transitionsBuilder: _i2.TransitionsBuilders.fadeIn,
+        opaque: true,
+        barrierDismissible: false,
+      );
+    },
   };
 
   @override
@@ -122,6 +131,10 @@ class AppRouter extends _i2.RootStackRouter {
         _i2.RouteConfig(
           BmiDetailRoute.name,
           path: '/bmi_detail',
+        ),
+        _i2.RouteConfig(
+          BloodPressureDetailRoute.name,
+          path: '/blood_pressure_detail',
         ),
       ];
 }
@@ -208,4 +221,16 @@ class BmiDetailRoute extends _i2.PageRouteInfo<void> {
         );
 
   static const String name = 'BmiDetailRoute';
+}
+
+/// generated route for
+/// [_i1.BloodPressureDetailPage]
+class BloodPressureDetailRoute extends _i2.PageRouteInfo<void> {
+  const BloodPressureDetailRoute()
+      : super(
+          BloodPressureDetailRoute.name,
+          path: '/blood_pressure_detail',
+        );
+
+  static const String name = 'BloodPressureDetailRoute';
 }

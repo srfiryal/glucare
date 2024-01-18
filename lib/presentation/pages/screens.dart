@@ -9,3 +9,4 @@ export 'diabetes_checker/diabetes_checker_page.dart';
 
 export 'glucose/glucose_detail_page.dart';
 export 'bmi/bmi_detail_page.dart';
+export 'blood_pressure/blood_pressure_detail_page.dart';

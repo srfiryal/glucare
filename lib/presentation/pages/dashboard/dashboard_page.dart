@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:glucare/l10n/l10n.dart';
 import 'package:glucare/presentation/core/color_values.dart';
+import 'package:glucare/presentation/pages/blood_pressure/blood_pressure_detail_page.dart';
 import 'package:glucare/presentation/widgets/custom_gradient_icon.dart';
 import 'package:glucare/presentation/widgets/custom_info_card.dart';
 import 'package:glucare/presentation/widgets/custom_shadow.dart';
@@ -273,7 +274,9 @@ class _DashboardPageState extends State<DashboardPage> {
             unit: UiConstants.bloodPressureUnit,
             status: 'Normal',
             update: 'Updated yesterday',
-            onTap: () {},
+            onTap: () {
+              AutoRouter.of(context).push(const BloodPressureDetailRoute());
+            },
           ),
         ),
       ],
