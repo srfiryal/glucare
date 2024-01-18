@@ -11,6 +11,7 @@ import '../../core/color_values.dart';
 import '../../core/ui_constants.dart';
 import '../../widgets/custom_app_bar.dart';
 import '../../widgets/custom_gradient_icon.dart';
+import '../../widgets/custom_text_field.dart';
 
 class DiabetesCheckerPage extends StatefulWidget {
   const DiabetesCheckerPage({super.key});
@@ -25,6 +26,9 @@ class _DiabetesCheckerState extends State<DiabetesCheckerPage> {
   final ValueNotifier<String> _selectedThirst = ValueNotifier('');
   final ValueNotifier<String> _selectedSugar = ValueNotifier('');
   final ValueNotifier<String> _selectedActivity = ValueNotifier('');
+  final ValueNotifier<String> _selectedGender = ValueNotifier('');
+  final TextEditingController _heightController = TextEditingController();
+  final TextEditingController _weightController = TextEditingController();
   final String _result = 'healthy';
   int _testIndex = 0;
 
@@ -274,8 +278,8 @@ class _DiabetesCheckerState extends State<DiabetesCheckerPage> {
                       Expanded(
                         child: Text(
                           e,
-                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: groupValue.value == e ? ColorValues.success50 : ColorValues.grey50,
+                          style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                            color: groupValue.value == e ? ColorValues.success50 : ColorValues.text50,
                           ),
                         ),
                       ),
@@ -288,38 +292,68 @@ class _DiabetesCheckerState extends State<DiabetesCheckerPage> {
         )
         : Row(
           children: options.map((e) => Expanded(
-            child: CustomShadow(
-              isBlur: false,
-              child: Container(
-                padding: EdgeInsets.symmetric(
-                  vertical: isDense ? 0 : UiConstants.lgPadding,
-                  horizontal: UiConstants.lgPadding,
+            child: GestureDetector(
+              onTap: () {
+                groupValue.value = e;
+              },
+              child: Padding(
+                padding: EdgeInsets.only(
+                  left: options[0] != e ? UiConstants.xsPadding : 0,
+                  right: options[options.length - 1] != e ? UiConstants.xsPadding : 0,
                 ),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(UiConstants.lgRadius),
-                  color: groupValue.value == e ? ColorValues.success10 : ColorValues.white,
-                ),
-                child: Row(
-                  children: [
-                    if (hasRadio)
-                      Radio(
-                        value: e,
-                        groupValue: groupValue,
-                        activeColor: ColorValues.success50,
-                        onChanged: (s) {
-                          groupValue.value = s.toString();
-                        },
-                      ),
-                    Expanded(
-                      child: Text(
-                        e,
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: groupValue.value == e ? ColorValues.success50 : ColorValues.grey50,
-                        ),
-                      ),
+                child: CustomShadow(
+                  isBlur: false,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                      vertical: isDense ? 0 : UiConstants.lgPadding,
+                      horizontal: UiConstants.lgPadding,
                     ),
-                  ],
-                )
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: groupValue.value == e ? ColorValues.success50 : ColorValues.grey10,
+                        width: 1,
+                      ),
+                      borderRadius: BorderRadius.circular(UiConstants.lgRadius),
+                      color: groupValue.value == e ? ColorValues.success10 : ColorValues.white,
+                    ),
+                    child: Row(
+                      children: [
+                        if (hasRadio)
+                          Container(
+                              width: 24,
+                              height: 24,
+                              margin: const EdgeInsets.only(right: UiConstants.xsSpacing),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(UiConstants.maxRadius),
+                                border: Border.all(
+                                  color: groupValue.value == e ? ColorValues.success50 : ColorValues.grey10,
+                                  width: 2,
+                                ),
+                              ),
+                              child: Align(
+                                alignment: Alignment.center,
+                                child: Container(
+                                  width: 16,
+                                  height: 16,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(UiConstants.maxRadius),
+                                    color: groupValue.value == e ? ColorValues.success50 : Colors.transparent,
+                                  ),
+                                ),
+                              )
+                          ),
+                        Expanded(
+                          child: Text(
+                            e,
+                            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                              color: groupValue.value == e ? ColorValues.success50 : ColorValues.text50,
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
+                  ),
+                ),
               ),
             ),
           )).toList(),
@@ -329,9 +363,86 @@ class _DiabetesCheckerState extends State<DiabetesCheckerPage> {
   }
 
   Widget _buildBmi() {
-    return const Column(
-      children: [
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: UiConstants.xsSpacing),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            AppLocalizations.of(context).choose_gender,
+            style: Theme.of(context).textTheme.labelLarge,
+          ),
+          const SizedBox(height: UiConstants.xsSpacing),
+          ValueListenableBuilder(
+            valueListenable: _selectedGender,
+            builder: (_, __, ___) {
+              return _buildOptions(
+                options: [AppLocalizations.of(context).male, AppLocalizations.of(context).female],
+                groupValue: _selectedGender,
+                isVertical: false,
+              );
+            }
+          ),
+          const SizedBox(height: UiConstants.mdSpacing),
+          _buildTextField(
+            controller: _heightController,
+            label: AppLocalizations.of(context).height,
+            unit: UiConstants.heightUnit,
+            hint: AppLocalizations.of(context).height_hint,
+          ),
+          const SizedBox(height: UiConstants.mdSpacing),
+          _buildTextField(
+            controller: _weightController,
+            label: AppLocalizations.of(context).weight,
+            unit: UiConstants.weightUnit,
+            hint: AppLocalizations.of(context).weight_hint,
+          ),
+        ],
+      ),
+    );
+  }
 
+  Widget _buildTextField({required controller, required String label, required String unit, required String hint}) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: Theme.of(context).textTheme.labelLarge,
+        ),
+        const SizedBox(height: UiConstants.xsSpacing),
+        CustomShadow(
+          isBlur: false,
+          child: Container(
+            padding: const EdgeInsets.all(UiConstants.lgPadding),
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: ColorValues.grey10,
+                width: 1,
+              ),
+              borderRadius: BorderRadius.circular(UiConstants.lgRadius),
+              color: ColorValues.white,
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: CustomTextField(
+                    controller: controller,
+                    hint: hint,
+                    textInputType: TextInputType.number,
+                    hasBorder: false,
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                ),
+                const SizedBox(height: UiConstants.xsSpacing),
+                Text(
+                  unit,
+                  style: Theme.of(context).textTheme.labelLarge,
+                ),
+              ],
+            ),
+          ),
+        )
       ],
     );
   }

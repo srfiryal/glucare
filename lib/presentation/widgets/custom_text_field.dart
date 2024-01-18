@@ -26,7 +26,8 @@ class CustomTextField extends StatefulWidget {
       this.minLines = 1,
       this.maxLines = 1,
       this.hasBorder = true,
-      this.suffixIcon})
+      this.suffixIcon,
+      this.style})
       : super(key: key);
   final TextEditingController controller;
   final String? Function(String?)? validator;
@@ -37,6 +38,7 @@ class CustomTextField extends StatefulWidget {
   final TextInputType? textInputType;
   final double verticalPadding, horizontalPadding;
   final int? minLines, maxLines;
+  final TextStyle? style;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -113,7 +115,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             controller: widget.controller,
             validator: widget.validator,
             readOnly: widget.readOnly,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w600),
+            style: widget.style ?? Theme.of(context).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w600),
             obscureText: widget.isPassword ? _isShowPassword : false,
             keyboardType: widget.textInputType ?? TextInputType.text,
             minLines: widget.minLines,

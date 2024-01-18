@@ -57,7 +57,7 @@
   "high": "High",
   "moderate": "Moderate",
   "low": "Low",
-  "let_us_know_you": "Let me know you",
+  "let_us_know_you": "Let us know you",
   "choose_gender": "Choose Gender",
   "male": "Male",
   "female": "Female",
@@ -78,5 +78,7 @@
   "back_to_home": "Back to Home",
   "body_mass_index": "Body Mass Index",
   "current_glucose": "Current Glucose",
-  "history": "History"
+  "history": "History",
+  "weight_hint": "Enter your weight",
+  "height_hint": "Enter your height"
 }

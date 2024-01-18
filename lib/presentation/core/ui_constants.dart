@@ -18,4 +18,6 @@ class UiConstants {
   static const String glucoseUnit = 'mg/dL';
   static const String bmiUnit = 'kg/m\u00B2';
   static const String bloodPressureUnit = 'mmHg';
+  static const String weightUnit = 'kg';
+  static const String heightUnit = 'cm';
 }
