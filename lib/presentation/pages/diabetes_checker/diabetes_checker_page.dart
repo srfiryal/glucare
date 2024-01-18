@@ -1,9 +1,11 @@
+import 'package:circular/circular.dart';
 import 'package:flutter/material.dart';
 import 'package:glucare/data/models/checker_question/checker_question_model.dart';
 import 'package:glucare/l10n/l10n.dart';
 import 'package:glucare/presentation/widgets/custom_button.dart';
 import 'package:glucare/presentation/widgets/custom_info_card.dart';
 import 'package:glucare/presentation/widgets/custom_shadow.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:sizer/sizer.dart';
 
@@ -27,10 +29,14 @@ class _DiabetesCheckerState extends State<DiabetesCheckerPage> {
   final ValueNotifier<String> _selectedSugar = ValueNotifier('');
   final ValueNotifier<String> _selectedActivity = ValueNotifier('');
   final ValueNotifier<String> _selectedGender = ValueNotifier('');
+  final ValueNotifier<String> _selectedTime = ValueNotifier('');
   final TextEditingController _heightController = TextEditingController();
   final TextEditingController _weightController = TextEditingController();
   final String _result = 'healthy';
   int _testIndex = 0;
+  int _glucoseLevel = 0;
+  late List<String> _genders;
+  late List<String> _testTimes;
 
   void _initQuestions() {
     _questions.add(CheckerQuestionModel(
@@ -53,11 +59,20 @@ class _DiabetesCheckerState extends State<DiabetesCheckerPage> {
       image: 'assets/img_question_4.png',
       options: [AppLocalizations.of(context).high, AppLocalizations.of(context).moderate, AppLocalizations.of(context).low],
     ));
+    _genders = [
+      AppLocalizations.of(context).male,
+      AppLocalizations.of(context).female,
+    ];
+    _testTimes = [
+      AppLocalizations.of(context).before_meal,
+      AppLocalizations.of(context).after_meal,
+      AppLocalizations.of(context).fasting,
+    ];
   }
 
   @override
   Widget build(BuildContext context) {
-    if (_questions.isEmpty) _initQuestions();
+    if (_questions.isEmpty || _genders.isEmpty || _testTimes.isEmpty) _initQuestions();
     Widget content = const SizedBox();
 
     switch (_testIndex) {
@@ -305,8 +320,8 @@ class _DiabetesCheckerState extends State<DiabetesCheckerPage> {
                   isBlur: false,
                   child: Container(
                     padding: EdgeInsets.symmetric(
-                      vertical: isDense ? 0 : UiConstants.lgPadding,
-                      horizontal: UiConstants.lgPadding,
+                      vertical: UiConstants.lgPadding,
+                      horizontal: isDense ? 0 : UiConstants.lgPadding,
                     ),
                     decoration: BoxDecoration(
                       border: Border.all(
@@ -317,6 +332,7 @@ class _DiabetesCheckerState extends State<DiabetesCheckerPage> {
                       color: groupValue.value == e ? ColorValues.success10 : ColorValues.white,
                     ),
                     child: Row(
+                      mainAxisAlignment: hasRadio ? MainAxisAlignment.start : MainAxisAlignment.center,
                       children: [
                         if (hasRadio)
                           Container(
@@ -345,6 +361,7 @@ class _DiabetesCheckerState extends State<DiabetesCheckerPage> {
                         Expanded(
                           child: Text(
                             e,
+                            textAlign: hasRadio ? TextAlign.start : TextAlign.center,
                             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                               color: groupValue.value == e ? ColorValues.success50 : ColorValues.text50,
                             ),
@@ -377,7 +394,7 @@ class _DiabetesCheckerState extends State<DiabetesCheckerPage> {
             valueListenable: _selectedGender,
             builder: (_, __, ___) {
               return _buildOptions(
-                options: [AppLocalizations.of(context).male, AppLocalizations.of(context).female],
+                options: _genders,
                 groupValue: _selectedGender,
                 isVertical: false,
               );
@@ -448,10 +465,49 @@ class _DiabetesCheckerState extends State<DiabetesCheckerPage> {
   }
 
   Widget _buildGlucose() {
-    return const Column(
-      children: [
-
-      ],
+    return Padding(
+      padding: const EdgeInsets.only(bottom: UiConstants.xsSpacing),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Center(
+            child: CircularSlider(
+              maxValue: 300,
+              radius: 30.w,
+              color: ColorValues.white,
+              sliderColor: ColorValues.primary50,
+              unSelectedColor: ColorValues.primary10,
+              onDrag: (value) {
+                setState(() {
+                  _glucoseLevel = value;
+                });
+              },
+              child: Text(
+                _glucoseLevel.toString(),
+                style: GoogleFonts.sora(fontSize: 48, decoration: TextDecoration.underline),
+              ),
+            ),
+          ),
+          const SizedBox(height: UiConstants.mdSpacing),
+          Text(
+            AppLocalizations.of(context).test_taking_time,
+            style: Theme.of(context).textTheme.labelLarge,
+          ),
+          const SizedBox(height: UiConstants.xsSpacing),
+          ValueListenableBuilder(
+              valueListenable: _selectedTime,
+              builder: (_, __, ___) {
+                return _buildOptions(
+                  isDense: true,
+                  hasRadio: false,
+                  options: _testTimes,
+                  groupValue: _selectedTime,
+                  isVertical: false,
+                );
+              }
+          ),
+        ],
+      ),
     );
   }
 
